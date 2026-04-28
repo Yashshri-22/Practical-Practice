@@ -1,0 +1,97 @@
+<!-- Design a Structured Resume Webpage including sections like Objective, Education, Skills, Projects, and Contact Information. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Resume</title>
+  <style>
+    /* Reset and Typography */
+    body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; margin: 0; background: #f4f4f4; color: #333; }
+    
+    /* Layout Container */
+    .resume-box { max-width: 800px; margin: 30px auto; background: #fff; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+    /* Header */
+    header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
+    h1 { margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+    .contact-info { color: #666; font-size: 0.9rem; }
+
+    /* Section Styling */
+    section { margin-top: 25px; }
+    h2 { background: #333; color: #fff; padding: 5px 15px; display: inline-block; font-size: 1.1rem; }
+    
+    .item { margin-bottom: 15px; }
+    .item-title { font-weight: bold; display: flex; justify-content: space-between; }
+    
+    /* Skills list as tags */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
+    .skills-list li { background: #eee; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; }
+
+    /* Printing optimization */
+    @media print {
+      body { background: #fff; }
+      .resume-box { box-shadow: none; margin: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="resume-box">
+  <header>
+    <h1>John Doe</h1>
+    <div class="contact-info">
+      Email: john.doe@email.com | Phone: +123 456 7890 | Location: City, Country
+    </div>
+  </header>
+
+  <section id="objective">
+    <h2>Objective</h2>
+    <p>A motivated and detail-oriented Full Stack Developer seeking an entry-level position to leverage skills in web development and problem-solving to contribute to innovative projects.</p>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-title">
+        <span>B.Tech in Computer Science</span>
+        <span>2022 - 2026</span>
+      </div>
+      <div>University Name, City</div>
+      <div>GPA: 3.8/4.0</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML5 & CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>React.js</li>
+      <li>Node.js</li>
+      <li>SQL / MongoDB</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="item">
+      <div class="item-title">E-Commerce Web App</div>
+      <p>Developed a responsive online store using React and Firebase. Integrated secure payment gateways and real-time inventory tracking.</p>
+    </div>
+    <div class="item">
+      <div class="item-title">Task Management API</div>
+      <p>Built a RESTful API using Node.js and Express to manage daily workflows with JWT authentication.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Connect</h2>
+    <p>LinkedIn: linkedin.com/in/johndoe | GitHub: github.com/johndoe</p>
+  </section>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!-- Create a Personal Portfolio Webpage with sections: About, Skills, Projects, and Contact. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Dev Name</title>
+  <style>
+    /* 1. Global Styles */
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; line-height: 1.6; scroll-behavior: smooth; }
+    
+    /* 2. Navigation */
+    nav { 
+      background: #333; color: white; padding: 1rem; 
+      position: sticky; top: 0; display: flex; justify-content: space-around; z-index: 100;
+    }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+
+    /* 3. Hero / About Section */
+    #about { 
+      height: 60vh; display: flex; flex-direction: column; 
+      justify-content: center; align-items: center; background: #f4f4f4; text-align: center;
+    }
+
+    /* 4. Sections Styling */
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+    h2 { border-bottom: 2px solid #333; display: inline-block; padding-bottom: 5px; }
+
+    /* 5. Skills (Flexbox) */
+    .skills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .skill-badge { background: #333; color: white; padding: 8px 15px; border-radius: 5px; }
+
+    /* 6. Projects (Grid) */
+    .project-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 20px; margin-top: 20px;
+    }
+    .project-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; transition: 0.3s; }
+    .project-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(-5px); }
+
+    /* 7. Contact Form */
+    form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
+    input, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #333; color: white; border: none; padding: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h1>Hi, I'm <span style="color: #007bff;">Your Name</span></h1>
+    <p>A passionate Full Stack Developer creating clean and functional web applications.</p>
+  </section>
+
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+      <div class="skill-badge">HTML/CSS</div>
+      <div class="skill-badge">JavaScript</div>
+      <div class="skill-badge">React</div>
+      <div class="skill-badge">Node.js</div>
+      <div class="skill-badge">SQL</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>E-Commerce Site</h3>
+        <p>A full-featured store with cart and payment integration.</p>
+      </div>
+      <div class="project-card">
+        <h3>Weather App</h3>
+        <p>Real-time weather tracking using OpenWeather API.</p>
+      </div>
+      <div class="project-card">
+        <h3>Chat Application</h3>
+        <p>Real-time messaging using Socket.io and Node.js.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer style="text-align: center; padding: 20px; background: #333; color: white;">
+    <p>&copy; 2026 Portfolio. Built with caffeine and code.</p>
+  </footer>
+
+</body>
+</html>

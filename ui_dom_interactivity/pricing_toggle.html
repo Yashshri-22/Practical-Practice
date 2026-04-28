@@ -1,0 +1,61 @@
+<!-- Create a Pricing Toggle Interface that switches between Monthly and Yearly subscription plans and updates prices dynamically. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pricing Toggle</title>
+    <style>
+        body { text-align: center; font-family: Arial; }
+
+        .card {
+            display: inline-block;
+            border: 1px solid black;
+            padding: 15px;
+            margin: 10px;
+            width: 120px;
+        }
+
+        button { margin: 10px; }
+    </style>
+</head>
+
+<body>
+
+<h2>Pricing Plans</h2>
+
+<button onclick="toggle()">Switch Plan</button>
+<p id="mode">Monthly</p>
+
+<div class="card">
+    <h3>Basic</h3>
+    <p id="basic">₹100</p>
+</div>
+
+<div class="card">
+    <h3>Pro</h3>
+    <p id="pro">₹200</p>
+</div>
+
+<script>
+let isMonthly = true;
+
+function toggle() {
+    if (isMonthly) {
+        document.getElementById("mode").innerText = "Yearly";
+
+        document.getElementById("basic").innerText = "₹1000";
+        document.getElementById("pro").innerText = "₹2000";
+
+        isMonthly = false;
+    } else {
+        document.getElementById("mode").innerText = "Monthly";
+
+        document.getElementById("basic").innerText = "₹100";
+        document.getElementById("pro").innerText = "₹200";
+
+        isMonthly = true;
+    }
+}
+</script>
+
+</body>
+</html>

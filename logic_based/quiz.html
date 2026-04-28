@@ -1,0 +1,80 @@
+<!-- Create a Quiz Application with multiple questions and display the final score after submission. -->
+<!doctype html>
+<html>
+  <head>
+    <title>Quick Quiz</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .q-block {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #result {
+        font-weight: bold;
+        color: green;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>General Knowledge Quiz</h2>
+    <div id="quiz-container"></div>
+    <button onclick="checkScore()">Submit Quiz</button>
+    <p id="result"></p>
+
+    <script>
+      // 1. Data Structure: Question, Options, and Correct Index
+      const questions = [
+        { q: "What is 5 + 5?", options: ["8", "10", "12"], ans: 1 },
+        {
+          q: "Capital of France?",
+          options: ["London", "Berlin", "Paris"],
+          ans: 2,
+        },
+      ];
+
+      const container = document.getElementById("quiz-container");
+
+      // 2. Render Quiz dynamically
+      questions.forEach((item, i) => {
+        let optionsHTML = item.options
+          .map(
+            (opt, j) => `
+        <label>
+          <input type="radio" name="q${i}" value="${j}"> ${opt}
+        </label><br>
+      `,
+          )
+          .join("");
+
+        container.innerHTML += `
+        <div class="q-block">
+          <p>${i + 1}. ${item.q}</p>
+          ${optionsHTML}
+        </div>
+      `;
+      });
+
+      // 3. Logic to calculate score
+      function checkScore() {
+        let score = 0;
+        questions.forEach((item, i) => {
+          // Find the selected radio button for this specific question
+          let selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+          // If selected value matches the correct answer index
+          if (selected && parseInt(selected.value) === item.ans) {
+            score++;
+          }
+        });
+
+        document.getElementById("result").innerText =
+          `You scored ${score} out of ${questions.length}`;
+      }
+    </script>
+  </body>
+</html>

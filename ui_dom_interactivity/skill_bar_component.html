@@ -1,0 +1,80 @@
+<!-- Design a reusable Skill Bar Component that accepts skill name and proficiency percentage as input and visually represents it. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Bar</title>
+    <style>
+        .skill-box {
+            width: 60%;
+            margin: 10px auto;
+        }
+        .bar {
+            background: lightgray;
+            height: 20px;
+        }
+        .fill {
+            background: green;
+            height: 100%;
+            color: white;
+            text-align: right;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2 style="text-align:center;">Skill Bar</h2>
+
+<!-- INPUT -->
+<div style="text-align:center;">
+    <input type="text" id="skill" placeholder="Enter skill">
+    <input type="number" id="percent" placeholder="Enter %">
+    <button onclick="addSkill()">Add</button>
+</div>
+
+<div id="skills"></div>
+
+<script>
+function addSkill() {
+    let skill = document.getElementById("skill").value;
+    let percent = document.getElementById("percent").value;
+
+    let skills = document.getElementsByClassName("skill-box");
+
+    // check if skill already exists
+    for (let i = 0; i < skills.length; i++) {
+        let name = skills[i].getElementsByTagName("p")[0].innerText;
+
+        if (name.toLowerCase() === skill.toLowerCase()) {
+            // update existing bar
+            let fill = skills[i].getElementsByClassName("fill")[0];
+            fill.style.width = percent + "%";
+            fill.innerText = percent + "%";
+            return;
+        }
+    }
+
+    // if not found → create new
+    createSkill(skill, percent);
+}
+
+function createSkill(skill, percent) {
+    let box = document.createElement("div");
+    box.className = "skill-box";
+
+    box.innerHTML = `
+        <p>${skill}</p>
+        <div class="bar">
+            <div class="fill" style="width:${percent}%">
+                ${percent}%
+            </div>
+        </div>
+    `;
+
+    document.getElementById("skills").appendChild(box);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!-- Design a Blog Layout consisting of header, sidebar, content area, and footer using CSS layout techniques. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog Layout</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #f4f4f4; }
+    
+    /* 1. Header & Footer */
+    header, footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* 2. Main Wrapper (Flexbox) */
+    .main-container {
+      display: flex;
+      flex-wrap: wrap; /* Allows stacking on mobile */
+      max-width: 1000px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    /* 3. Content Area (Grows to take space) */
+    .content {
+      flex: 3; /* Takes 3 parts of space */
+      background: white;
+      padding: 20px;
+      min-width: 300px;
+    }
+
+    /* 4. Sidebar (Fixed relative width) */
+    .sidebar {
+      flex: 1; /* Takes 1 part of space */
+      background: #ddd;
+      padding: 20px;
+      min-width: 200px;
+    }
+
+    article { margin-bottom: 30px; border-bottom: 1px solid #eee; }
+    h2 { color: #333; }
+
+    /* Mobile responsiveness */
+    @media (max-width: 700px) {
+      .main-container { flex-direction: column; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Personal Blog</h1>
+  </header>
+
+  <div class="main-container">
+    <main class="content">
+      <article>
+        <h2>The Joy of Coding</h2>
+        <p>Published on: April 20, 2026</p>
+        <p>Coding is not just about syntax; it's about solving problems and creating something from nothing. Today we explore the beauty of CSS Flexbox...</p>
+      </article>
+
+      <article>
+        <h2>Why HTML Matters</h2>
+        <p>Published on: April 18, 2026</p>
+        <p>Semantic HTML is the backbone of the web. It provides structure and meaning to your content, making it accessible to everyone...</p>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <h3>About Me</h3>
+      <p>I am a full-stack developer in training, passionate about clean code and UI design.</p>
+      
+      <h3>Categories</h3>
+      <ul>
+        <li>Web Design</li>
+        <li>JavaScript</li>
+        <li>Backend</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 My Dev Blog. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

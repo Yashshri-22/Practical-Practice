@@ -1,0 +1,67 @@
+<!-- Build a Notes Application where users can add and delete notes, with data stored using localStorage. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App (Local Storage)</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+    #noteInput { width: 200px; padding: 8px; }
+    .note { 
+      background: #fff; padding: 10px; margin: 10px 0; 
+      border-left: 5px solid #ffc107; display: flex; justify-content: space-between;
+    }
+    button { cursor: pointer; }
+    .del-btn { color: red; border: none; background: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Quick Notes</h2>
+  <input type="text" id="noteInput" placeholder="Write a note...">
+  <button onclick="addNote()">Add</button>
+
+  <div id="notesContainer"></div>
+
+  <script>
+    // 1. Load notes from LocalStorage on startup
+    let notes = JSON.parse(localStorage.getItem("myNotes")) || [];
+    render();
+
+    function addNote() {
+      let input = document.getElementById("noteInput");
+      if (input.value.trim() === "") return;
+
+      notes.push(input.value); // Add to array
+      updateStorage();         // Save and refresh UI
+      input.value = "";        // Clear input
+    }
+
+    function deleteNote(index) {
+      notes.splice(index, 1);  // Remove 1 item at the specific index
+      updateStorage();
+    }
+
+    function updateStorage() {
+      // Save array as a string
+      localStorage.setItem("myNotes", JSON.stringify(notes));
+      render();
+    }
+
+    function render() {
+      let container = document.getElementById("notesContainer");
+      container.innerHTML = ""; // Clear current view
+
+      notes.forEach((text, i) => {
+        container.innerHTML += `
+          <div class="note">
+            <span>${text}</span>
+            <button class="del-btn" onclick="deleteNote(${i})">Delete</button>
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>

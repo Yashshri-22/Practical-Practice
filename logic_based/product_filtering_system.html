@@ -1,0 +1,61 @@
+<!-- Develop a Product Filtering System that filters items based on category selection. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Filter</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .item { 
+      padding: 15px; 
+      margin: 10px; 
+      background: #eee; 
+      display: inline-block; 
+      width: 120px; 
+      text-align: center;
+    }
+    /* This class will be toggled by JS */
+    .hidden { display: none; }
+    button { cursor: pointer; padding: 8px 15px; margin-right: 5px; }
+    .active { background: #333; color: white; }
+  </style>
+</head>
+<body>
+
+  <h2>Product Filter</h2>
+  
+  <div id="buttons">
+    <button onclick="filterItems('all')" class="active">All</button>
+    <button onclick="filterItems('fruit')">Fruits</button>
+    <button onclick="filterItems('veg')">Vegetables</button>
+  </div>
+
+  <div id="products">
+    <div class="item fruit">Apple</div>
+    <div class="item fruit">Banana</div>
+    <div class="item veg">Carrot</div>
+    <div class="item veg">Broccoli</div>
+    <div class="item fruit">Mango</div>
+  </div>
+
+  <script>
+    function filterItems(category) {
+      let items = document.querySelectorAll('.item');
+      
+      items.forEach(item => {
+        // Logic: If 'all' is picked OR item has the specific category class
+        if (category === 'all' || item.classList.contains(category)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      // Optional: Highlight active button
+      document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

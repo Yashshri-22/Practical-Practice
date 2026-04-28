@@ -1,0 +1,55 @@
+<!-- Create a Shopping Cart System where users can increase/decrease product quantity and the total price updates automatically. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart Exam</title>
+  <style>
+    .item { border-bottom: 1px solid #ccc; padding: 10px; }
+    .qty { font-weight: bold; margin: 0 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>Shopping Cart</h2>
+  
+  <div class="item" data-price="1000">
+    <span>Laptop ($1000)</span>
+    <button onclick="update(this, -1)">-</button>
+    <span class="qty">0</span>
+    <button onclick="update(this, 1)">+</button>
+  </div>
+
+  <div class="item" data-price="50">
+    <span>Mouse ($50)</span>
+    <button onclick="update(this, -1)">-</button>
+    <span class="qty">0</span>
+    <button onclick="update(this, 1)">+</button>
+  </div>
+
+  <h3>Total: $<span id="total">0</span></h3>
+
+  <script>
+    function update(btn, change) {
+      // 1. Get the parent div and the quantity span
+      let row = btn.parentElement;
+      let qtySpan = row.querySelector('.qty');
+      
+      // 2. Update quantity (Math.max prevents negative numbers)
+      let currentQty = parseInt(qtySpan.innerText);
+      qtySpan.innerText = Math.max(0, currentQty + change);
+
+      // 3. Recalculate Total
+      let total = 0;
+      document.querySelectorAll('.item').forEach(item => {
+        let price = parseInt(item.getAttribute('data-price'));
+        let qty = parseInt(item.querySelector('.qty').innerText);
+        total += price * qty;
+      });
+
+      document.getElementById('total').innerText = total;
+    }
+  </script>
+
+</body>
+</html>

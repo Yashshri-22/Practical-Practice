@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Dashboard 2026</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; padding: 40px; }
+    
+    .dashboard { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 25px; 
+      max-width: 1100px; 
+      margin: auto; 
+    }
+
+    .card { 
+      background: white; 
+      padding: 25px; 
+      border-radius: 15px; 
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+      height: 320px; /* Fixed height for consistency */
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 { color: #333; font-size: 1.1rem; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-top: 0; }
+
+    /* --- 1. BAR CHART FIX --- */
+    .bar-chart { 
+      display: flex; 
+      align-items: flex-end; /* Keeps bars on the baseline */
+      justify-content: space-around; 
+      height: 200px; /* Defined height for bars to grow into */
+      margin-top: auto; 
+    }
+
+    .bar-wrapper { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      width: 45px; 
+    }
+
+    .bar { 
+      width: 100%; 
+      background: #ff7e5f; 
+      border-radius: 4px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: flex-start; 
+      color: white; 
+      font-size: 11px; 
+      font-weight: bold;
+      padding-top: 5px;
+      transition: height 0.5s ease; /* Smooth loading effect */
+    }
+
+    .label { font-size: 11px; margin-top: 8px; color: #888; text-transform: uppercase; }
+
+    /* --- 2. LINE CHART (Area Chart) --- */
+    .line-container { height: 180px; margin-top: auto; position: relative; overflow: hidden; }
+    
+    .line-path {
+      width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(54, 162, 235, 0.1), rgba(54, 162, 235, 0.6));
+      /* Adjusted polygon to look more like a weather trend */
+      clip-path: polygon(0% 75%, 20% 65%, 40% 75%, 60% 55%, 80% 65%, 100% 45%, 100% 100%, 0% 100%);
+    }
+
+    /* --- 3. PIE CHART --- */
+    .pie {
+      width: 160px; height: 160px; 
+      border-radius: 50%; 
+      margin: auto;
+      background: conic-gradient(#ffce56 0% 60%, #36a2eb 60% 90%, #ff6384 90% 100%);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .legend { 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 0.75rem; 
+      list-style: none; 
+      padding: 0; 
+      margin-top: 15px;
+    }
+    
+    .legend-item { display: flex; align-items: center; }
+    .dot { height: 10px; width: 10px; border-radius: 2px; margin-right: 5px; }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align: center; color: #333; margin-bottom: 40px;">Weather Analytics Dashboard</h1>
+
+<div class="dashboard">
+  
+  <div class="card">
+    <h2>Weekly Temperature (°C)</h2>
+    <div class="bar-chart">
+      <div class="bar-wrapper"><div class="bar" style="height: 112px;">28</div><div class="label">M</div></div>
+      <div class="bar-wrapper"><div class="bar" style="height: 128px;">32</div><div class="label">T</div></div>
+      <div class="bar-wrapper"><div class="bar" style="height: 104px;">26</div><div class="label">W</div></div>
+      <div class="bar-wrapper"><div class="bar" style="height: 144px;">36</div><div class="label">T</div></div>
+      <div class="bar-wrapper"><div class="bar" style="height: 120px;">30</div><div class="label">F</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Humidity Trends (%)</h2>
+    <div class="line-container">
+      <div class="line-path"></div>
+    </div>
+    <p style="font-size: 0.75rem; color: #888; text-align: center; margin-top: 10px;">Mon &rarr; Fri</p>
+  </div>
+
+  <div class="card">
+    <h2>Weather Conditions</h2>
+    <div class="pie"></div>
+    <div class="legend">
+      <div class="legend-item"><span class="dot" style="background: #ffce56;"></span> Sunny (60%)</div>
+      <div class="legend-item"><span class="dot" style="background: #36a2eb;"></span> Cloudy (30%)</div>
+      <div class="legend-item"><span class="dot" style="background: #ff6384;"></span> Rainy (10%)</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

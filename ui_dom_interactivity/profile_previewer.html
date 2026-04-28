@@ -1,0 +1,55 @@
+<!-- 4. Develop a Real-Time Profile Previewer where user input in a form is instantly reflected in a profile card layout. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Preview</title>
+    <style>
+        body { font-family: Arial; text-align: center; }
+
+        .card {
+            border: 1px solid black;
+            width: 250px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        input, textarea {
+            margin: 5px;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Profile Previewer</h2>
+
+<!-- FORM -->
+<input type="text" id="name" placeholder="Enter Name" onkeyup="update()"><br>
+<input type="email" id="email" placeholder="Enter Email" onkeyup="update()"><br>
+<textarea id="bio" placeholder="Enter Bio" onkeyup="update()"></textarea>
+
+<!-- PREVIEW CARD -->
+<div class="card">
+    <h3 id="pname">Your Name</h3>
+    <p id="pemail">Your Email</p>
+    <p id="pbio">Your Bio</p>
+</div>
+
+<script>
+function update() {
+    document.getElementById("pname").innerText =
+        document.getElementById("name").value;
+
+    document.getElementById("pemail").innerText =
+        document.getElementById("email").value;
+
+    document.getElementById("pbio").innerText =
+        document.getElementById("bio").value;
+}
+</script>
+
+</body>
+</html>

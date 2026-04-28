@@ -1,0 +1,43 @@
+<!-- Write a program that accepts a string input and performs operations such as reversing, converting to uppercase/lowercase, and calculating its length. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Operations</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+    input { padding: 10px; width: 250px; }
+    .output-box { margin-top: 15px; padding: 10px; background: #f9f9f9; border-left: 5px solid #333; }
+    b { color: #e44d26; }
+  </style>
+</head>
+<body>
+
+  <h2>String Utility</h2>
+  <input type="text" id="strInput" placeholder="Type something..." oninput="process()">
+
+  <div class="output-box" id="result">
+    <p>Reverse: <span id="rev"></span></p>
+    <p>Uppercase: <span id="upper"></span></p>
+    <p>Lowercase: <span id="lower"></span></p>
+    <p>Length: <span id="len"></span></p>
+  </div>
+
+  <script>
+    function process() {
+      let val = document.getElementById('strInput').value;
+
+      // 1. Reverse: Split into array -> Reverse array -> Join back to string
+      document.getElementById('rev').innerText = val.split('').reverse().join('');
+
+      // 2. Case Conversion
+      document.getElementById('upper').innerText = val.toUpperCase();
+      document.getElementById('lower').innerText = val.toLowerCase();
+
+      // 3. Length
+      document.getElementById('len').innerText = val.length;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- Implement a Stopwatch Application with start, stop, and reset functionalities. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stopwatch Exam</title>
+  <style>
+    body { font-family: monospace; text-align: center; padding-top: 50px; }
+    #display { font-size: 3rem; margin-bottom: 20px; }
+    button { padding: 10px 20px; font-size: 1rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div id="display">00:00:00</div>
+  
+  <button onclick="start()">Start</button>
+  <button onclick="stop()">Stop</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let timer; 
+    let ms = 0; // Total centiseconds (1/100th of a second)
+
+    function start() {
+      if (!timer) { // Prevents multiple intervals from starting
+        timer = setInterval(run, 10);
+      }
+    }
+
+    function run() {
+      ms++;
+      let min = Math.floor(ms / 6000);
+      let sec = Math.floor((ms % 6000) / 100);
+      let centi = ms % 100;
+
+      // Format: padStart adds a leading zero if the number is single digit
+      document.getElementById('display').innerText = 
+        `${f(min)}:${f(sec)}:${f(centi)}`;
+    }
+
+    // Helper function to format numbers (adds leading zero)
+    function f(num) {
+      return num.toString().padStart(2, '0');
+    }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null; // Reset timer variable so 'start' can work again
+    }
+
+    function reset() {
+      stop();
+      ms = 0;
+      document.getElementById('display').innerText = "00:00:00";
+    }
+  </script>
+
+</body>
+</html>

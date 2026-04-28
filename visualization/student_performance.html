@@ -1,0 +1,92 @@
+<!-- Visualize Student Performance Data (marks, attendance, progress) using multiple chart types. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; background: #f0f4f8; padding: 40px; }
+    .dashboard { display: flex; gap: 20px; justify-content: center; }
+    .card { 
+      background: white; padding: 20px; border-radius: 15px; 
+      width: 320px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      height: 350px; display: flex; flex-direction: column;
+    }
+    h3 { margin-top: 0; color: #444; }
+
+    /* 1. BAR CHART FIX */
+    .bar-container { 
+      display: flex; align-items: flex-end; justify-content: space-around; 
+      height: 200px; border-bottom: 1px solid #eee; margin-top: auto;
+    }
+    .bar-item { display: flex; flex-direction: column; align-items: center; width: 40px; }
+    .bar { 
+      width: 100%; background: #e0e0e0; /* Default color */
+      border-radius: 5px 5px 0 0; transition: 0.5s; 
+    }
+    /* We use these classes to set heights specifically */
+    .val-85 { height: 170px; background: #4e73df; } 
+    .val-92 { height: 184px; background: #1cc88a; }
+    .val-78 { height: 156px; background: #36b9cc; }
+    .val-88 { height: 176px; background: #f6c23e; }
+
+    /* 2. DOUGHNUT FIX (Attendance) */
+    .doughnut {
+      width: 180px; height: 180px; border-radius: 50%; margin: auto;
+      background: conic-gradient(#1cc88a 0% 85%, #e74a3b 85% 100%);
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hole { 
+      width: 130px; height: 130px; background: white; 
+      border-radius: 50%; display: flex; flex-direction: column; 
+      justify-content: center; align-items: center; 
+    }
+
+    /* 3. AREA CHART FIX (Progress) */
+    .area-container { height: 200px; width: 100%; margin-top: auto; background: #fdfdfd; }
+    .area-fill {
+      width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(78, 115, 223, 0.1), rgba(78, 115, 223, 0.5));
+      /* These points (x y) create the slope of your image */
+      clip-path: polygon(0% 70%, 25% 65%, 50% 40%, 75% 45%, 100% 25%, 100% 100%, 0% 100%);
+    }
+    .labels { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: #888; }
+  </style>
+</head>
+<body>
+
+<div class="dashboard">
+  
+  <div class="card">
+    <h3>Marks per Subject (%)</h3>
+    <div class="bar-container">
+      <div class="bar-item"><span style="font-size:12px">85</span><div class="bar val-85"></div><span>Math</span></div>
+      <div class="bar-item"><span style="font-size:12px">92</span><div class="bar val-92"></div><span>Sci</span></div>
+      <div class="bar-item"><span style="font-size:12px">78</span><div class="bar val-78"></div><span>Eng</span></div>
+      <div class="bar-item"><span style="font-size:12px">88</span><div class="bar val-88"></div><span>CS</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Attendance Record</h3>
+    <div class="doughnut">
+      <div class="hole">
+        <span style="font-size: 2rem; font-weight: bold;">85%</span>
+        <span style="color: #888;">Present</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Learning Progress</h3>
+    <div class="area-container">
+      <div class="area-fill"></div>
+    </div>
+    <div class="labels">
+      <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

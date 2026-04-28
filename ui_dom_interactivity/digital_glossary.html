@@ -1,0 +1,74 @@
+<!-- Develop a Digital Glossary that displays HTML formatting tags in a table and allows users to filter the content dynamically using a search bar. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Glossary</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>HTML Glossary</h2>
+
+<input type="text" id="search" placeholder="Search tag..." onkeyup="filterTable()">
+
+<table id="myTable">
+    <tr>
+        <th>Tag</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>&lt;b&gt;</td>
+        <td>Bold text</td>
+    </tr>
+    <tr>
+        <td>&lt;i&gt;</td>
+        <td>Italic text</td>
+    </tr>
+    <tr>
+        <td>&lt;u&gt;</td>
+        <td>Underline text</td>
+    </tr>
+    <tr>
+        <td>&lt;p&gt;</td>
+        <td>Paragraph</td>
+    </tr>
+    <tr>
+        <td>&lt;a&gt;</td>
+        <td>Hyperlink</td>
+    </tr>
+</table>
+
+<script>
+function filterTable() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let rows = document.querySelectorAll("#myTable tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let text = rows[i].innerText.toLowerCase();
+        rows[i].style.display = text.includes(input) ? "" : "none";
+    }
+}
+</script>
+
+</body>
+</html>

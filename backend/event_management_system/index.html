@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Registration</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 40px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .list-box { margin-top: 30px; }
+        .card { background: #eee; padding: 10px; margin-top: 5px; border-radius: 5px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎉 Register for an Event</h2>
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email Address">
+    
+    <select id="eventName">
+        <option value="">-- Choose Event --</option>
+        <option value="Tech Workshop">Tech Workshop</option>
+        <option value="Music Fest">Music Fest</option>
+        <option value="Art Exhibition">Art Exhibition</option>
+    </select>
+
+    <button onclick="register()">Register Now</button>
+
+    <div class="list-box">
+        <h3>Registered Participants</h3>
+        <div id="participantList"></div>
+    </div>
+</div>
+
+<script>
+    const API = "http://localhost:5000";
+
+    async function register() {
+        const payload = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            eventName: document.getElementById('eventName').value
+        };
+
+        const res = await fetch(`${API}/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+            alert("Registered successfully!");
+            loadParticipants();
+        }
+    }
+
+    async function loadParticipants() {
+        const res = await fetch(`${API}/participants`);
+        const data = await res.json();
+        const div = document.getElementById('participantList');
+        
+        div.innerHTML = data.map(p => `
+            <div class="card">
+                <strong>${p.name}</strong> (${p.email}) <br> 
+                Event: <span style="color:blue">${p.eventName}</span>
+            </div>
+        `).join('');
+    }
+
+    loadParticipants(); // Load on page open
+</script>
+
+</body>
+</html>

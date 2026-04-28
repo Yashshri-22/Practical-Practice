@@ -1,0 +1,83 @@
+<!-- Develop a Weekly Timetable using HTML tables with appropriate use of rowspan and colspan. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weekly Timetable</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; /* Removes double borders */
+      text-align: center;
+    }
+    th, td { 
+      border: 2px solid #444; 
+      padding: 12px; 
+    }
+    th { background-color: #333; color: white; }
+    /* Highlight the break row */
+    .break { background-color: #f8f9fa; font-style: italic; font-weight: bold; }
+    /* Highlight the long session */
+    .lab { background-color: #e7f3ff; }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center">Class Schedule</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Time / Day</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>09:00 - 10:00</td>
+        <td>Mathematics</td>
+        <td>Physics</td>
+        <td>English</td>
+        <td>History</td>
+        <td>Fine Arts</td>
+      </tr>
+      
+      <tr>
+        <td>10:00 - 11:00</td>
+        <td>Physics</td>
+        <td>Computer Science</td>
+        <td>Mathematics</td>
+        <td>English</td>
+        <td>Sports</td>
+      </tr>
+
+      <tr class="break">
+        <td>11:00 - 11:30</td>
+        <td colspan="5">LUNCH BREAK</td>
+      </tr>
+
+      <tr>
+        <td>11:30 - 12:30</td>
+        <td rowspan="2" class="lab">Chemistry Lab</td>
+        <td>History</td>
+        <td>Physics</td>
+        <td rowspan="2" class="lab">Web Dev Lab</td>
+        <td>Library</td>
+      </tr>
+
+      <tr>
+        <td>12:30 - 01:30</td>
+        <td>Mathematics</td>
+        <td>Computer Science</td>
+        <td>Project</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

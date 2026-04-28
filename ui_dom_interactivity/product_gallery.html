@@ -1,0 +1,61 @@
+<!-- Build a Product Gallery that dynamically displays products from a JSON dataset using cards and includes a “Buy Now” interaction. -->
+<!doctype html>
+<html>
+  <head>
+    <title>Product Gallery</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial;
+      }
+
+      .card {
+        display: inline-block;
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+        width: 150px;
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Product Gallery</h2>
+
+    <div id="products"></div>
+
+    <script>
+      // JSON data
+      let data = [
+        { name: "Shoes", price: 1000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJKGc3xa9QNp6aHdgJ-KFI-QLN-reRWsZnHekvuxVaPDVBtNFhxiyz0SNnGKdezgPeRybplGTsNxIl6l3Igee0qSd2aoV1QYudIrH2wSuGOmbp89SUDpka&s&ec=121644734" },
+        { name: "Bag", price: 500, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJKGc3xa9QNp6aHdgJ-KFI-QLN-reRWsZnHekvuxVaPDVBtNFhxiyz0SNnGKdezgPeRybplGTsNxIl6l3Igee0qSd2aoV1QYudIrH2wSuGOmbp89SUDpka&s&ec=121644734" },
+        { name: "Watch", price: 1500, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJKGc3xa9QNp6aHdgJ-KFI-QLN-reRWsZnHekvuxVaPDVBtNFhxiyz0SNnGKdezgPeRybplGTsNxIl6l3Igee0qSd2aoV1QYudIrH2wSuGOmbp89SUDpka&s&ec=121644734" },
+      ];
+
+      // display products
+      data.forEach((p) => {
+        let card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>₹${p.price}</p>
+        <button onclick="buy('${p.name}')">Buy Now</button>
+    `;
+
+        document.getElementById("products").appendChild(card);
+      });
+
+      // button action
+      function buy(name) {
+        alert(name + " purchased!");
+      }
+    </script>
+  </body>
+</html>

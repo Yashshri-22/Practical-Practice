@@ -1,0 +1,73 @@
+<!-- Build a Product Gallery that dynamically displays products from a JSON dataset using cards and includes a “Buy Now” interaction. -->
+<!doctype html>
+<html>
+  <head>
+    <title>Photo Gallery</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .img-box {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        overflow: hidden; /* important for zoom */
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        transition: 0.3s;
+      }
+
+      .img-box:hover img {
+        transform: scale(1.2); /* zoom effect */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Photo Gallery</h2>
+
+    <div class="gallery">
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+      <div class="img-box">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv32Gl0S7G5VBhTbBu8yLE2fq8cc0nnoZvj8xUhFTkk6ZYFAujeW9s5xHL4PM9ezxyqc9ROvep1EMUYc3hzDvk089kjGzdUctghzrX4Rqk5VhVAN3YXJ02&s&ec=121644734"
+        />
+      </div>
+    </div>
+  </body>
+</html>

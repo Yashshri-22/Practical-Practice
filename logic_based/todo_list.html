@@ -1,0 +1,54 @@
+<!-- Build a To-Do List Application that allows users to add and delete tasks dynamically. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .task { 
+      display: flex; 
+      justify-content: space-between; 
+      background: #f4f4f4; 
+      margin: 5px 0; 
+      padding: 10px; 
+      border-radius: 4px;
+    }
+    button.del { color: red; cursor: pointer; border: none; background: none; }
+  </style>
+</head>
+<body>
+
+  <h2>My Tasks</h2>
+  <input type="text" id="taskInput" placeholder="Enter task...">
+  <button onclick="addTask()">Add Task</button>
+
+  <div id="taskList">
+    </div>
+
+  <script>
+    function addTask() {
+      let input = document.getElementById('taskInput');
+      let list = document.getElementById('taskList');
+
+      if (input.value.trim() === "") return; // Don't add empty tasks
+
+      // 1. Create the container div
+      let div = document.createElement('div');
+      div.className = 'task';
+
+      // 2. Set the internal HTML (Task text + Delete button)
+      // 'this.parentElement' refers to the div created above
+      div.innerHTML = `
+        <span>${input.value}</span>
+        <button class="del" onclick="this.parentElement.remove()">X</button>
+      `;
+
+      // 3. Append to the list and clear input
+      list.appendChild(div);
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>

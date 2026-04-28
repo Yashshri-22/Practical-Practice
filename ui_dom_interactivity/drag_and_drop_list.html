@@ -1,0 +1,49 @@
+<!-- Implement a Drag-and-Drop List that allows users to reorder items dynamically. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag Drop List</title>
+    <style>
+        li {
+            padding: 10px;
+            margin: 5px;
+            background: lightgray;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Drag and Drop List</h2>
+
+<ul id="list">
+    <li draggable="true">Item 1</li>
+    <li draggable="true">Item 2</li>
+    <li draggable="true">Item 3</li>
+    <li draggable="true">Item 4</li>
+</ul>
+
+<script>
+let dragged;
+
+let items = document.querySelectorAll("li");
+
+items.forEach(item => {
+    item.addEventListener("dragstart", function() {
+        dragged = this;
+    });
+
+    item.addEventListener("dragover", function(e) {
+        e.preventDefault();  // allow drop
+    });
+
+    item.addEventListener("drop", function() {
+        this.parentNode.insertBefore(dragged, this);
+    });
+});
+</script>
+
+</body>
+</html>

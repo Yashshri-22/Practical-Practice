@@ -1,0 +1,79 @@
+<!-- Build an Image Gallery with Category Filtering using HTML, CSS, and JavaScript. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Gallery Filter</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #f8f9fa; }
+    
+    /* Filter Buttons */
+    .btn-group { margin: 20px; }
+    button { 
+      padding: 10px 20px; cursor: pointer; border: none; 
+      background: #ddd; margin: 5px; border-radius: 5px;
+    }
+    button.active { background: #007bff; color: white; }
+
+    /* Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .img-card { background: white; padding: 5px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .img-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 3px; }
+    
+    /* Logic Class */
+    .hide { display: none; }
+  </style>
+</head>
+<body>
+
+  <h2>Photo Gallery</h2>
+
+  <div class="btn-group" id="filter-btns">
+    <button onclick="filterImg('all')" class="active">All</button>
+    <button onclick="filterImg('nature')">Nature</button>
+    <button onclick="filterImg('city')">City</button>
+    <button onclick="filterImg('tech')">Tech</button>
+  </div>
+
+  <div class="gallery">
+    <div class="img-card" data-cat="nature"><img src="https://picsum.photos/id/10/200"></div>
+    <div class="img-card" data-cat="nature"><img src="https://picsum.photos/id/11/200"></div>
+    <div class="img-card" data-cat="city"><img src="https://picsum.photos/id/103/200"></div>
+    <div class="img-card" data-cat="city"><img src="https://picsum.photos/id/122/200"></div>
+    <div class="img-card" data-cat="tech"><img src="https://picsum.photos/id/160/200"></div>
+    <div class="img-card" data-cat="tech"><img src="https://picsum.photos/id/201/200"></div>
+  </div>
+
+  <script>
+    function filterImg(category) {
+      // 1. Highlight active button
+      let btns = document.querySelectorAll('button');
+      btns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // 2. Filter images
+      let cards = document.querySelectorAll('.img-card');
+      
+      cards.forEach(card => {
+        let cardCat = card.getAttribute('data-cat');
+        
+        // Show if 'all' or if category matches
+        if (category === 'all' || category === cardCat) {
+          card.classList.remove('hide');
+        } else {
+          card.classList.add('hide');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

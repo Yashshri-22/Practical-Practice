@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Records</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .box { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        input { display: block; margin: 10px 0; padding: 8px; width: 250px; }
+        .record { background: #f9f9f9; padding: 10px; margin: 5px 0; border-left: 4px solid blue; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h3>Add Student</h3>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="roll" placeholder="Roll No">
+        <input type="text" id="branch" placeholder="Branch">
+        <button onclick="addStudent()">Save Record</button>
+    </div>
+
+    <div class="box">
+        <h3>All Records</h3>
+        <button onclick="fetchStudents()">Refresh List</button>
+        <div id="list"></div>
+    </div>
+
+    <script>
+        const API = "http://localhost:5000";
+
+        async function addStudent() {
+            const data = {
+                name: document.getElementById('name').value,
+                roll: document.getElementById('roll').value,
+                branch: document.getElementById('branch').value
+            };
+
+            await fetch(`${API}/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            
+            alert("Record Added!");
+            fetchStudents(); // Refresh list automatically
+        }
+
+        async function fetchStudents() {
+            const res = await fetch(`${API}/all`);
+            const students = await res.json();
+            const listDiv = document.getElementById('list');
+            
+            listDiv.innerHTML = students.map(s => `
+                <div class="record">
+                    <b>${s.name}</b> | Roll: ${s.roll} | Branch: ${s.branch}
+                </div>
+            `).join('');
+        }
+
+        // Fetch list on page load
+        fetchStudents();
+    </script>
+</body>
+</html>
