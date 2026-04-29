@@ -1,61 +1,108 @@
 <!-- Create a Pricing Toggle Interface that switches between Monthly and Yearly subscription plans and updates prices dynamically. -->
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Pricing Toggle</title>
     <style>
-        body { text-align: center; font-family: Arial; }
+      body {
+        text-align: center;
+        font-family: Arial;
+      }
 
-        .card {
-            display: inline-block;
-            border: 1px solid black;
-            padding: 15px;
-            margin: 10px;
-            width: 120px;
-        }
+      .card {
+        display: inline-block;
+        border: 1px solid black;
+        padding: 15px;
+        margin: 10px;
+        width: 120px;
+      }
 
-        button { margin: 10px; }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        background: gray;
+        border-radius: 30px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: 0.4s;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        background: white;
+        border-radius: 50%;
+        left: 3px;
+        top: 3px;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background: green;
+      }
+
+      input:checked + .slider::before {
+        transform: translateX(30px);
+      }
+
+      button {
+        margin: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h2>Pricing Plans</h2>
 
-<h2>Pricing Plans</h2>
+    <!-- <button onclick="toggle()">Switch Plan</button> -->
+    <label class="switch">
+      <input type="checkbox" onchange="toggle(this)" />
+      <span class="slider"></span>
+    </label>
 
-<button onclick="toggle()">Switch Plan</button>
-<p id="mode">Monthly</p>
+    <p id="mode">Monthly</p>
 
-<div class="card">
-    <h3>Basic</h3>
-    <p id="basic">₹100</p>
-</div>
+    <div class="card">
+      <h3>Basic</h3>
+      <p id="basic">₹100</p>
+    </div>
 
-<div class="card">
-    <h3>Pro</h3>
-    <p id="pro">₹200</p>
-</div>
+    <div class="card">
+      <h3>Pro</h3>
+      <p id="pro">₹200</p>
+    </div>
 
-<script>
-let isMonthly = true;
+    <script>
+      let isMonthly = true;
 
-function toggle() {
-    if (isMonthly) {
-        document.getElementById("mode").innerText = "Yearly";
+      function toggle(el) {
+        if (el.checked) {
+          document.getElementById("mode").innerText = "Yearly";
 
-        document.getElementById("basic").innerText = "₹1000";
-        document.getElementById("pro").innerText = "₹2000";
+          document.getElementById("basic").innerText = "₹1000";
+          document.getElementById("pro").innerText = "₹2000";
+        } else {
+          document.getElementById("mode").innerText = "Monthly";
 
-        isMonthly = false;
-    } else {
-        document.getElementById("mode").innerText = "Monthly";
-
-        document.getElementById("basic").innerText = "₹100";
-        document.getElementById("pro").innerText = "₹200";
-
-        isMonthly = true;
-    }
-}
-</script>
-
-</body>
+          document.getElementById("basic").innerText = "₹100";
+          document.getElementById("pro").innerText = "₹200";
+        }
+      }
+    </script>
+  </body>
 </html>

@@ -1,79 +1,58 @@
-<!-- Design a Pie or Doughnut Chart to represent attendance distribution (Present, Absent, Leave). -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Attendance Doughnut Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: sans-serif; text-align: center; }
-    
-    /* The core chart container */
-    .doughnut {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%; /* Makes it a circle */
-      margin: 40px auto;
-      
-      /* THIS IS THE CRITICAL LINE FOR THE EXAM */
-      /* conic-gradient creates the pie segments */
-      background: conic-gradient(
-        #28a745 0deg 270deg,     /* Present (75% = 270deg) */
-        #dc3545 270deg 324deg,   /* Absent  (15% = 54deg)  */
-        #ffc107 324deg 360deg    /* Leave   (10% = 36deg)  */
-      );
-      
-      /* Setup for central label */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    /* The 'hole' in the doughnut that shows the total */
-    .doughnut-hole {
-      width: 170px;
-      height: 170px;
+    body {
+      font-family: sans-serif;
+      text-align: center;
       background-color: #f4f4f4;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-weight: bold;
     }
-
-    /* Legend styling */
-    .legend {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      list-style: none;
-      padding: 0;
-    }
-    .legend li { display: flex; align-items: center; }
-    .dot { 
-      height: 12px; width: 12px; 
-      border-radius: 50%; display: inline-block; 
-      margin-right: 8px; 
+    canvas {
+      max-width: 300px;
+      margin: 40px auto;
     }
   </style>
 </head>
-<body style="background-color: #f4f4f4;">
+<body>
 
   <h2>Attendance Overview (June 2026)</h2>
 
-  <div class="doughnut">
-    <div class="doughnut-hole">
-      <span style="font-size: 2.5rem; color: #333;">75%</span>
-      <span style="font-size: 0.9rem; color: #666;">Present</span>
-    </div>
-  </div>
+  <!-- Chart Canvas -->
+  <canvas id="attendanceChart"></canvas>
 
-  <ul class="legend">
-    <li><span class="dot" style="background: #28a745;"></span> Present (75%)</li>
-    <li><span class="dot" style="background: #dc3545;"></span> Absent (15%)</li>
-    <li><span class="dot" style="background: #ffc107;"></span> Leave (10%)</li>
-  </ul>
+  <script>
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+    const attendanceChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Present', 'Absent', 'Leave'],
+        datasets: [{
+          data: [75, 15, 10],
+          backgroundColor: [
+            '#28a745', // Present (green)
+            '#dc3545', // Absent (red)
+            '#ffc107'  // Leave (yellow)
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        cutout: '70%', // Creates doughnut hole
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            enabled: true
+          }
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>

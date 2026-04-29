@@ -1,49 +1,98 @@
 <!-- Implement a Drag-and-Drop List that allows users to reorder items dynamically. -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Drag Drop List</title>
     <style>
-        li {
-            padding: 10px;
-            margin: 5px;
-            background: lightgray;
-            cursor: move;
-        }
+      li {
+        padding: 10px;
+        margin: 5px;
+        background: lightgray;
+        cursor: move;
+      }
+
+      .dragging {
+        opacity: 0.5;
+      }
+
+      .over {
+        border: 2px dashed black;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h2>Drag and Drop List</h2>
 
-<h2>Drag and Drop List</h2>
+    <ul id="list">
+      <li draggable="true">Item 1</li>
+      <li draggable="true">Item 2</li>
+      <li draggable="true">Item 3</li>
+      <li draggable="true">Item 4</li>
+    </ul>
 
-<ul id="list">
-    <li draggable="true">Item 1</li>
-    <li draggable="true">Item 2</li>
-    <li draggable="true">Item 3</li>
-    <li draggable="true">Item 4</li>
-</ul>
+    <!-- <script>
+      let dragged;
 
-<script>
+      let items = document.querySelectorAll("li");
+
+      items.forEach((item) => {
+        item.addEventListener("dragstart", function () {
+          dragged = this;
+        });
+
+        item.addEventListener("dragover", function (e) {
+          e.preventDefault(); // allow drop
+        });
+
+        item.addEventListener("drop", function () {
+          this.parentNode.insertBefore(dragged, this);
+        });
+      });
+    </script> -->
+    <script>
 let dragged;
 
 let items = document.querySelectorAll("li");
 
 items.forEach(item => {
+
     item.addEventListener("dragstart", function() {
         dragged = this;
+        this.classList.add("dragging");
+    });
+
+    item.addEventListener("dragend", function() {
+        this.classList.remove("dragging");
     });
 
     item.addEventListener("dragover", function(e) {
-        e.preventDefault();  // allow drop
+        e.preventDefault();
     });
 
-    item.addEventListener("drop", function() {
-        this.parentNode.insertBefore(dragged, this);
+    item.addEventListener("dragenter", function() {
+        this.classList.add("over");
+    });
+
+    item.addEventListener("dragleave", function() {
+        this.classList.remove("over");
+    });
+
+    item.addEventListener("drop", function(e) {
+        e.preventDefault();
+        this.classList.remove("over");
+
+        const rect = this.getBoundingClientRect();
+        const offset = e.clientY - rect.top;
+
+        if (offset > rect.height / 2) {
+            this.parentNode.insertBefore(dragged, this.nextSibling);
+        } else {
+            this.parentNode.insertBefore(dragged, this);
+        }
     });
 });
 </script>
-
-</body>
+  </body>
 </html>

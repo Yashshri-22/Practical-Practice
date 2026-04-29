@@ -59,12 +59,24 @@
 </table>
 
 <script>
+// function filterTable() {
+//     let input = document.getElementById("search").value.toLowerCase();
+//     let rows = document.querySelectorAll("#myTable tr");
+
+//     for (let i = 1; i < rows.length; i++) {
+//         let text = rows[i].innerText.toLowerCase();
+//         rows[i].style.display = text.includes(input) ? "" : "none";
+//     }
+// }
+
 function filterTable() {
     let input = document.getElementById("search").value.toLowerCase();
     let rows = document.querySelectorAll("#myTable tr");
 
     for (let i = 1; i < rows.length; i++) {
-        let text = rows[i].innerText.toLowerCase();
+        let tagCell = rows[i].getElementsByTagName("td")[0]; // first column
+        let text = tagCell.innerText.toLowerCase();
+
         rows[i].style.display = text.includes(input) ? "" : "none";
     }
 }

@@ -1,50 +1,65 @@
 <!-- Develop an FAQ Accordion where clicking a question expands/collapses the answer section. -->
- <!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>FAQ Accordion</title>
     <style>
-        body { font-family: Arial; }
+      body {
+        font-family: Arial;
+      }
 
-        .question {
-            background: lightgray;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-        }
+      .question {
+        background: lightgray;
+        padding: 10px;
+        margin: 5px;
+        cursor: pointer;
+      }
 
-        .answer {
-            display: none;
-            padding: 10px;
-            border: 1px solid gray;
-        }
+      .answer {
+        display: none;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid gray;
+      }
+
+      .icon {
+        float: right;
+        font-weight: bold;
+        padding-right: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h2>FAQ</h2>
 
-<h2>FAQ</h2>
+    <div class="question" onclick="toggle(this)">
+      What is HTML?<span class="icon">+</span>
+    </div>
+    <div class="answer">HTML is a markup language.</div>
 
-<div class="question" onclick="toggle(this)">What is HTML?</div>
-<div class="answer">HTML is a markup language.</div>
+    <div class="question" onclick="toggle(this)">
+      What is CSS?<span class="icon">+</span>
+    </div>
+    <div class="answer">CSS is used for styling.</div>
 
-<div class="question" onclick="toggle(this)">What is CSS?</div>
-<div class="answer">CSS is used for styling.</div>
+    <div class="question" onclick="toggle(this)">
+      What is JavaScript?<span class="icon">+</span>
+    </div>
+    <div class="answer">JavaScript adds interactivity.</div>
 
-<div class="question" onclick="toggle(this)">What is JavaScript?</div>
-<div class="answer">JavaScript adds interactivity.</div>
-
-<script>
-function toggle(q) {
-    let ans = q.nextElementSibling;
-
-    if (ans.style.display === "block") {
-        ans.style.display = "none";
-    } else {
-        ans.style.display = "block";
-    }
-}
-</script>
-
-</body>
+    <script>
+      function toggle(q) {
+        let ans = q.nextElementSibling;
+        let icon = q.querySelector(".icon");
+        if (ans.style.display === "block") {
+          ans.style.display = "none";
+          icon.textContent = "+";
+        } else {
+          ans.style.display = "block";
+          icon.textContent = "-";
+        }
+      }
+    </script>
+  </body>
 </html>
